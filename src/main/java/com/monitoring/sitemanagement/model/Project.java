@@ -7,6 +7,16 @@ public class Project {
     private String keterangan;
     private String username;
 
+    public Project(int project_id, String project_name, String keterangan, String username) {
+        this.project_id = project_id;
+        this.project_name = project_name;
+        this.keterangan = keterangan;
+        this.username = username;
+    }
+
+    public Project(){
+    }
+
     public int getProject_id() {
         return project_id;
     }

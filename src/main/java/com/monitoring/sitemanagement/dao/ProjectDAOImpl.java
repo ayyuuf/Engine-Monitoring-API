@@ -2,17 +2,17 @@ package com.monitoring.sitemanagement.dao;
 
 import com.monitoring.sitemanagement.model.Project;
 import com.monitoring.sitemanagement.model.ProjectMapper;
-import com.monitoring.sitemanagement.model.Server;
-import com.monitoring.sitemanagement.model.ServerMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Repository
+@Transactional
 public class ProjectDAOImpl implements ProjectDAO{
 
     @Autowired
@@ -28,8 +28,8 @@ public class ProjectDAOImpl implements ProjectDAO{
 
     @Override
     public void updateProject(Project project) {
-        String query = "UPDATE project SET keterangan=?, project_name=?, username=? WHERE project_id=?";
-        jdbcTemplate.update(query,project.getKeterangan(),project.getUsername(),project.getProject_name());
+        String query = "UPDATE project SET project_name=?, keterangan=?, username=? WHERE project_id=?";
+        jdbcTemplate.update(query,project.getProject_name(),project.getKeterangan(),project.getUsername(), project.getProject_id());
 
     }
 
@@ -39,6 +39,7 @@ public class ProjectDAOImpl implements ProjectDAO{
         jdbcTemplate.update(query);
 
     }
+
 
     @Override
     public void deleteProject(int project_id) {
