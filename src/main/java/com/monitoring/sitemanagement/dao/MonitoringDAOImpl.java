@@ -26,7 +26,7 @@ public class MonitoringDAOImpl implements MonitoringDAO{
 
     @Override
     public int update(Monitoring monitoring) {
-        return jdbcTemplate.update(UPDATE_MONITORING_QUERY, new Object[] {monitoring.getMonitoring_id(),monitoring.getUsername(), monitoring.getProject_id(),monitoring.getServer_id(), monitoring.getName(), monitoring.getType(),
+        return jdbcTemplate.update(UPDATE_MONITORING_QUERY, new Object[] {monitoring.getUsername(), monitoring.getProject_id(),monitoring.getServer_id(), monitoring.getName(), monitoring.getType(),
         monitoring.getPort(), monitoring.getHaproxy(), monitoring.getHaproxy_port(), monitoring.getPath(), monitoring.getGit_url(), monitoring.getRunning_on(),monitoring.getRunning_command(), monitoring.getLast_update()});
     }
 

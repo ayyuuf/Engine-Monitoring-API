@@ -12,6 +12,5 @@ public interface ServerDAO {
     public void updateServer( Server server);
     public void addServer(Server server);
     public void deleteServer(int server_id);
-
-
+    public int count();
 }

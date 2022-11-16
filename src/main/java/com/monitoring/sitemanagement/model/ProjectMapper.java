@@ -15,6 +15,7 @@ public class ProjectMapper implements RowMapper<Project> {
         project.setProject_name(rs.getString("project_name"));
         project.setKeterangan(rs.getString("keterangan"));
         project.setUsername(rs.getString("username"));
+        project.setStatus(rs.getString("status"));
         return project;
     }
 }

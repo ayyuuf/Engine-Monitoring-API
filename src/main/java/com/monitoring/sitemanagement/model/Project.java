@@ -6,12 +6,14 @@ public class Project {
     private String project_name;
     private String keterangan;
     private String username;
+    private String status;
 
     public Project(int project_id, String project_name, String keterangan, String username) {
         this.project_id = project_id;
         this.project_name = project_name;
         this.keterangan = keterangan;
         this.username = username;
+        this.status = status;
     }
 
     public Project(){
@@ -47,5 +49,13 @@ public class Project {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

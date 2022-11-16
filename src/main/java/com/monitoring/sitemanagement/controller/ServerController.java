@@ -52,4 +52,10 @@ public class ServerController {
         return new ResponseEntity<>(server, HttpStatus.OK);
     }
 
+    @GetMapping("/count")
+    public ResponseEntity<?> count(){
+
+        int server= serverService.count();
+        return new ResponseEntity<>(server, HttpStatus.OK);
+    }
 }

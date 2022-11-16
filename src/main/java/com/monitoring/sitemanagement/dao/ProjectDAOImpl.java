@@ -28,14 +28,14 @@ public class ProjectDAOImpl implements ProjectDAO{
 
     @Override
     public void updateProject(Project project) {
-        String query = "UPDATE project SET project_name=?, keterangan=?, username=? WHERE project_id=?";
-        jdbcTemplate.update(query,project.getProject_name(),project.getKeterangan(),project.getUsername(), project.getProject_id());
+        String query = "UPDATE project SET project_name=?, keterangan=?, username=?,status=? WHERE project_id=?";
+        jdbcTemplate.update(query,project.getProject_name(),project.getKeterangan(),project.getUsername(), project.getStatus(),project.getProject_id());
 
     }
 
     @Override
     public void addProject(Project project) {
-        String query = ("INSERT INTO project( project_name, keterangan, username) VALUES('"+project.getProject_name()+"','"+project.getKeterangan()+"','"+project.getUsername()+"')");
+        String query = ("INSERT INTO project( project_name, keterangan, username,status) VALUES('"+project.getProject_name()+"','"+project.getKeterangan()+"','"+project.getUsername()+"','"+project.getStatus()+"')");
         jdbcTemplate.update(query);
 
     }
@@ -43,7 +43,7 @@ public class ProjectDAOImpl implements ProjectDAO{
 
     @Override
     public void deleteProject(int project_id) {
-        String query = "DELETE FROM server WHERE project_id=?";
+        String query = "DELETE FROM project WHERE project_id=?";
         jdbcTemplate.update(query, project_id);
     }
 

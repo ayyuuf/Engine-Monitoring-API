@@ -40,4 +40,10 @@ public class ServerServiceImpl implements ServerService{
         serverDAO.deleteServer(server_id);
 
     }
+
+    @Override
+    public int count() {
+        return serverDAO.count();
+    }
+
 }

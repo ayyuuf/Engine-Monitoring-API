@@ -55,4 +55,10 @@ public class ServerDAOImpl implements  ServerDAO{
         jdbcTemplate.update(query, server_id);
     }
 
+    @Override
+    public int count() {
+        String query = "SELECT COUNT(*) FROM server";
+        return jdbcTemplate.queryForObject(query, Integer.class);
+    }
+
 }
