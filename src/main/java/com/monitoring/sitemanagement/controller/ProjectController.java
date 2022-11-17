@@ -51,4 +51,11 @@ public class ProjectController {
         Project project = projectService.findProjectByProject_id(project_id);
         return new ResponseEntity<>(project, HttpStatus.OK);
     }
+
+    @GetMapping("/count")
+    public ResponseEntity<?> count(){
+
+        int project= projectService.count();
+        return new ResponseEntity<>(project, HttpStatus.OK);
+    }
 }

@@ -40,4 +40,9 @@ public class ProjectServiceImpl implements ProjectService{
         projectDAO.deleteProject(project_id);
 
     }
+
+    @Override
+    public int count() {
+        return projectDAO.count();
+    }
 }

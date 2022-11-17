@@ -54,4 +54,10 @@ public class ProjectDAOImpl implements ProjectDAO{
         List<Project> list = jdbcTemplate.query(query, rowMapper);
         return list;
     }
+
+    @Override
+    public int count() {
+        String query = "SELECT COUNT(*) FROM project";
+        return jdbcTemplate.queryForObject(query, Integer.class);
+    }
 }

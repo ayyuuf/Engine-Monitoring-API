@@ -15,4 +15,5 @@ public interface ProjectDAO {
     public void deleteProject(int project_id);
 
     List<Project> getAllProjects();
+    public int count();
 }

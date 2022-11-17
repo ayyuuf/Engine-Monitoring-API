@@ -16,4 +16,5 @@ public interface ProjectService {
     public void addProject(Project project);
 
     public void deleteProject(int project_id);
+    public int count();
 }
