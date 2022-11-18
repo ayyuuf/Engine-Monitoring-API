@@ -19,23 +19,24 @@ public class UserController {
     private UserServiceImpl userService;
 
     @PostMapping("/create-user")
-    public ResponseEntity<?> createProject(@RequestBody User user) {
+    public ResponseEntity<?> createUser(@RequestBody User user) {
 
         userService.AddUser(user);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @GetMapping("/{user}")
-    public ResponseEntity<?> findByUsername(@PathVariable("user")String username){
-
-        User user = userService.findByUsername(username);
-        return new ResponseEntity<>(user, HttpStatus.OK);
-    }
-    @GetMapping()
+    @GetMapping("/")
     public ResponseEntity<?> getUsers() {
 
         List<User> users = userService.getAllUsers();
         return new ResponseEntity<>(users, HttpStatus.OK);
+    }
+
+    @GetMapping("/count")
+    public ResponseEntity<?> count(){
+
+        int user= userService.count();
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
 }

@@ -22,19 +22,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findByUsername(String username) {
-
-        User user = new User();
-        Optional<User> existingUser = userDAO.findByUsername(username);
-        if (existingUser.isPresent())
-            user = existingUser.get();
-        return user;
-    }
-
-    @Override
     public void AddUser(User user) {
         userDAO.save(user);
 
+    }
+
+    @Override
+    public int count() {
+        return userDAO.count();
     }
 
 }

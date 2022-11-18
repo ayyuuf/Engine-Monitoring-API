@@ -7,8 +7,8 @@ import java.util.List;
 public interface UserService {
 
     List<User> getAllUsers();
-
-    public User findByUsername(String username);
     public void AddUser(User user);
+
+    public int count();
 
 }
