@@ -37,13 +37,19 @@ public class MonitoringDAOImpl implements MonitoringDAO{
 
     @Override
     public int countService() {
-        String query = "SELECT COUNT(type) FROM monitoring where type = service ";
+        String query = "SELECT COUNT(type) FROM monitoring where type = 1 ";
         return jdbcTemplate.queryForObject(query, Integer.class);
     }
 
     @Override
     public int countEngine() {
-        String query = "SELECT COUNT(type) FROM monitoring where type = engine";
+        String query = "SELECT COUNT(type) FROM monitoring where type = 2";
+        return jdbcTemplate.queryForObject(query, Integer.class);
+    }
+
+    @Override
+    public int countChart() {
+        String query = "SELECT type, COUNT(*) from monitoring GROUP BY type";
         return jdbcTemplate.queryForObject(query, Integer.class);
     }
 }

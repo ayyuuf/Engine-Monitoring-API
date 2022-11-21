@@ -11,5 +11,6 @@ public interface MonitoringService {
     public Monitoring getMonitoringById(int id);
     public int countService();
     public int countEngine();
+    public int countChart();
 
 }

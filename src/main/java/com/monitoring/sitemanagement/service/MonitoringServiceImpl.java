@@ -42,4 +42,9 @@ public class MonitoringServiceImpl implements MonitoringService{
     public int countEngine() {
         return monitoringDAO.countEngine();
     }
+
+    @Override
+    public int countChart() {
+        return monitoringDAO.countEngine();
+    }
 }

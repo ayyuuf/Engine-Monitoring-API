@@ -17,4 +17,6 @@ public interface MonitoringDAO {
 
     public int countEngine();
 
+    public int countChart();
+
 }

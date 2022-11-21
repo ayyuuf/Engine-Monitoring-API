@@ -52,4 +52,12 @@ public class MonitoringController {
         int monitoring= monitoringService.countEngine();
         return new ResponseEntity<>(monitoring, HttpStatus.OK);
     }
+
+    @GetMapping("/countChart")
+    public ResponseEntity<?> countChart(){
+
+        int monitoring= monitoringService.countChart();
+        return new ResponseEntity<>(monitoring, HttpStatus.OK);
+    }
+
 }
