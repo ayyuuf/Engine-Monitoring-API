@@ -14,15 +14,10 @@ public class MonitoringServiceImpl implements MonitoringService{
     @Autowired
     private MonitoringDAOImpl monitoringDAO;
 
-
-
-    public void updateMonitoring(Monitoring monitoring) {
-        monitoringDAO.update(monitoring);
-    }
-
     public List<Monitoring> getMonitorings() {
 
-        return monitoringDAO.findAll();}
+        return monitoringDAO.getMonitorings();
+    }
 
     public Monitoring getMonitoringById(int monitoring_id) {
 

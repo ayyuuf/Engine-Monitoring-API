@@ -7,9 +7,8 @@ import java.util.Optional;
 
 public interface MonitoringDAO {
 
-    List<Monitoring> findAll();
 
-   public int update(Monitoring monitoring);
+    List<Monitoring> getMonitorings();
 
     Optional<Monitoring> findById(int monitoring_id);
 

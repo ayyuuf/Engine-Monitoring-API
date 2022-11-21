@@ -18,14 +18,7 @@ public class MonitoringController {
     @Autowired
     private MonitoringServiceImpl monitoringService;
 
-    @PutMapping("/update-monitoring")
-    public ResponseEntity<?> updateMonitoring(@RequestBody Monitoring monitoring) {
-
-        monitoringService.updateMonitoring(monitoring);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-    @GetMapping()
+    @GetMapping("/")
     public ResponseEntity<?> getMonitorings() {
 
         List<Monitoring> monitorings = monitoringService.getMonitorings();
