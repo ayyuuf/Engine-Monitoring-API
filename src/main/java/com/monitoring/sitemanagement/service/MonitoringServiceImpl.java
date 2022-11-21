@@ -32,4 +32,14 @@ public class MonitoringServiceImpl implements MonitoringService{
             monitoring = existingMonitoring.get();
         return monitoring;
     }
+
+    @Override
+    public int countService() {
+        return monitoringDAO.countService();
+    }
+
+    @Override
+    public int countEngine() {
+        return monitoringDAO.countEngine();
+    }
 }

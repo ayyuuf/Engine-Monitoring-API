@@ -34,4 +34,16 @@ public class MonitoringDAOImpl implements MonitoringDAO{
     public Optional<Monitoring> findById(int monitoring_id) {
         return java.util.Optional.of(jdbcTemplate.queryForObject(GET_MONITORING_BY_ID_QUERY, new MonitoringMapper(), new Object[] {monitoring_id}));
     }
+
+    @Override
+    public int countService() {
+        String query = "SELECT COUNT(type) FROM monitoring where type = service ";
+        return jdbcTemplate.queryForObject(query, Integer.class);
+    }
+
+    @Override
+    public int countEngine() {
+        String query = "SELECT COUNT(type) FROM monitoring where type = engine";
+        return jdbcTemplate.queryForObject(query, Integer.class);
+    }
 }

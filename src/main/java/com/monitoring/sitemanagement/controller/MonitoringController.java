@@ -38,4 +38,18 @@ public class MonitoringController {
         Monitoring monitoring = monitoringService.getMonitoringById(monitoring_id);
         return new ResponseEntity<>(monitoring, HttpStatus.OK);
     }
+
+    @GetMapping("/countService")
+    public ResponseEntity<?> countService(){
+
+        int monitoring= monitoringService.countService();
+        return new ResponseEntity<>(monitoring, HttpStatus.OK);
+    }
+
+    @GetMapping("/countEngine")
+    public ResponseEntity<?> countEngine(){
+
+        int monitoring= monitoringService.countEngine();
+        return new ResponseEntity<>(monitoring, HttpStatus.OK);
+    }
 }

@@ -1,5 +1,7 @@
 package com.monitoring.sitemanagement.model;
 
+import java.sql.Timestamp;
+
 public class Monitoring {
 
     private int monitoring_id;
@@ -15,7 +17,7 @@ public class Monitoring {
     private String git_url;
     private int running_on;
     private String running_command;
-    private int last_update;
+    private Timestamp last_update;
 
     public Monitoring() {
     }
@@ -124,11 +126,11 @@ public class Monitoring {
         this.running_command = running_command;
     }
 
-    public int getLast_update() {
+    public Timestamp getLast_update() {
         return last_update;
     }
 
-    public void setLast_update(int last_update) {
+    public void setLast_update(Timestamp last_update) {
         this.last_update = last_update;
     }
 }

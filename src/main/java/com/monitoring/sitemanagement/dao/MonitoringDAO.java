@@ -9,9 +9,12 @@ public interface MonitoringDAO {
 
     List<Monitoring> findAll();
 
-    int update(Monitoring monitoring);
+   public int update(Monitoring monitoring);
 
     Optional<Monitoring> findById(int monitoring_id);
 
+    public int countService();
+
+    public int countEngine();
 
 }
