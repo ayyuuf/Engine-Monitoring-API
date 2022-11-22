@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.Map;
 
 @Service
 public class MonitoringServiceImpl implements MonitoringService{
@@ -14,18 +14,14 @@ public class MonitoringServiceImpl implements MonitoringService{
     @Autowired
     private MonitoringDAOImpl monitoringDAO;
 
-    public List<Monitoring> getMonitorings() {
+    public List<Map<String, Object>> getAllMonitorings() {
 
-        return monitoringDAO.getMonitorings();
+        return monitoringDAO.getAllMonitorings();
     }
 
-    public Monitoring getMonitoringById(int monitoring_id) {
-
-        Monitoring monitoring = new Monitoring();
-        Optional<Monitoring> existingMonitoring = monitoringDAO.findById(monitoring_id);
-        if (existingMonitoring.isPresent())
-            monitoring = existingMonitoring.get();
-        return monitoring;
+    @Override
+    public Monitoring findById(int monitoring_id) {
+        return monitoringDAO.findById(monitoring_id);
     }
 
     @Override

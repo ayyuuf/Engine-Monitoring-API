@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -21,14 +22,14 @@ public class MonitoringController {
     @GetMapping("/")
     public ResponseEntity<?> getMonitorings() {
 
-        List<Monitoring> monitorings = monitoringService.getMonitorings();
+        List<Map<String,Object>> monitorings = monitoringService.getAllMonitorings();
         return new ResponseEntity<>(monitorings, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getMonitoringById(@PathVariable("id") int monitoring_id) {
 
-        Monitoring monitoring = monitoringService.getMonitoringById(monitoring_id);
+        Monitoring monitoring = monitoringService.findById(monitoring_id);
         return new ResponseEntity<>(monitoring, HttpStatus.OK);
     }
 

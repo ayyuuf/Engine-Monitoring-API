@@ -1,13 +1,14 @@
 package com.monitoring.sitemanagement.dao;
 
 import com.monitoring.sitemanagement.model.Monitoring;
-import com.monitoring.sitemanagement.model.MonitoringMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.Map;
 
 @Repository
 public class MonitoringDAOImpl implements MonitoringDAO{
@@ -15,17 +16,23 @@ public class MonitoringDAOImpl implements MonitoringDAO{
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    private final String GET_MONITORING_QUERY = "SELECT * FROM monitoring";
-    private final String GET_MONITORING_BY_ID_QUERY = "SELECT * FROM monitoring where monitoring_id = ?";
 
     @Override
-    public List<Monitoring> getMonitorings() {
-        return jdbcTemplate.query(GET_MONITORING_QUERY, new MonitoringMapper());
+    public List<Map<String, Object>> getAllMonitorings() {
+        String query = "SELECT * from monitoring";
+        return jdbcTemplate.queryForList(query);
+//        RowMapper<Monitoring> rowMapper = new MonitoringMapper();
+//        List<Monitoring> list = jdbcTemplate.query(query, rowMapper);
+//        System.out.println(list);
+//        return list;
     }
 
     @Override
-    public Optional<Monitoring> findById(int monitoring_id) {
-        return java.util.Optional.of(jdbcTemplate.queryForObject(GET_MONITORING_BY_ID_QUERY, new MonitoringMapper(), new Object[] {monitoring_id}));
+    public Monitoring findById(int monitoring_id) {
+        String query = "SELECT * FROM monitoring WHERE monitoring_id = ?";
+        RowMapper<Monitoring> rowMapper = new BeanPropertyRowMapper<Monitoring>(Monitoring.class);
+        Monitoring monitoring= jdbcTemplate.queryForObject(query, rowMapper, monitoring_id);
+        return monitoring;
     }
 
     @Override
