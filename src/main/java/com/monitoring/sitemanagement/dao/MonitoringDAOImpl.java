@@ -43,9 +43,24 @@ public class MonitoringDAOImpl implements MonitoringDAO{
         return jdbcTemplate.queryForObject(query, Integer.class);
     }
 
+
     @Override
-    public int countChart() {
-        String query = "SELECT type, COUNT(*) from monitoring GROUP BY type";
-        return jdbcTemplate.queryForObject(query, Integer.class);
+    public void addMonitoring(Monitoring monitoring) {
+        String query = ("INSERT INTO monitoring (username, project_id, server_id, name, type, port, haproxy, haproxy_port, path, git_url, running_on, running_command, last_update) VALUES ('"+monitoring.getUsername()+"','"+monitoring.getProject_id()+"', '"+monitoring.getServer_id()+"','"+monitoring.getName()+"','"+monitoring.getType()+"', '"+monitoring.getPort()+"', '"+monitoring.getHaproxy()+"', '"+monitoring.getHaproxy_port()+"','"+monitoring.getPath()+"', '"+monitoring.getGit_url()+"', '"+monitoring.getRunning_on()+"', '"+monitoring.getRunning_command()+"', '"+monitoring.getLast_update()+"')");
+        System.out.println(query);
+        jdbcTemplate.update(query);
+
+    }
+
+    @Override
+    public void updateMonitoring(Monitoring monitoring) {
+        String query =("UPDATE monitoring SET username=?, project_id=?, server_id=?, name=?, type=?, port=?,haproxy=?, haproxy_port=?, path=?, git_url=?, running_on=?, running_command=?, last_update=? WHERE monitoring_id=?");
+        jdbcTemplate.update(query, monitoring.getUsername(),monitoring.getProject_id(), monitoring.getServer_id(), monitoring.getName(), monitoring.getType(),monitoring.getPort(), monitoring.getHaproxy(), monitoring.getHaproxy_port(),monitoring.getPath(),monitoring.getGit_url(), monitoring.getRunning_on(), monitoring.getRunning_command(), monitoring.getLast_update(),monitoring.getMonitoring_id());
+    }
+
+    @Override
+    public void deleteMonitoring(int monitoring_id) {
+        String query = "DELETE FROM monitoring WHERE monitoring_id=?";
+        jdbcTemplate.update(query, monitoring_id);
     }
 }

@@ -14,7 +14,9 @@ public interface MonitoringDAO {
     public int countService();
 
     public int countEngine();
+    public void addMonitoring(Monitoring monitoring);
+    public void updateMonitoring(Monitoring monitoring);
+    public void deleteMonitoring(int monitoring_id);
 
-    public int countChart();
 
 }

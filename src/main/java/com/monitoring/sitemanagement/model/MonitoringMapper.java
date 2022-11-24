@@ -16,6 +16,7 @@ public class MonitoringMapper implements RowMapper<Monitoring> {
         monitoring.setServer_id((rs.getInt("server_id")));
         monitoring.setName(rs.getString("name"));
         monitoring.setType(rs.getInt("type"));
+        monitoring.setPort(rs.getInt("port"));
         monitoring.setHaproxy(rs.getInt("haproxy"));
         monitoring.setHaproxy_port(rs.getInt("haproxy_port"));
         monitoring.setPath(rs.getString("path"));

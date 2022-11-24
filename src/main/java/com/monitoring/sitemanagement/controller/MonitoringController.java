@@ -2,6 +2,7 @@ package com.monitoring.sitemanagement.controller;
 
 import com.monitoring.sitemanagement.model.Monitoring;
 import com.monitoring.sitemanagement.model.Project;
+import com.monitoring.sitemanagement.model.Server;
 import com.monitoring.sitemanagement.service.MonitoringServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -47,11 +48,26 @@ public class MonitoringController {
         return new ResponseEntity<>(monitoring, HttpStatus.OK);
     }
 
-    @GetMapping("/countChart")
-    public ResponseEntity<?> countChart(){
 
-        int monitoring= monitoringService.countChart();
-        return new ResponseEntity<>(monitoring, HttpStatus.OK);
+    @PostMapping("/save-monitoring")
+    public ResponseEntity<?> addMonitoring(@RequestBody Monitoring monitoring) {
+
+        monitoringService.addMonitoring(monitoring);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @PutMapping("/update-monitoring")
+    public ResponseEntity<?> updateMonitoring(@RequestBody Monitoring monitoring) {
+
+        monitoringService.updateMonitoring(monitoring);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete-monitoring/{id}")
+    public ResponseEntity<?> deleteMonitoring(@PathVariable("id") int monitoring_id) {
+
+        monitoringService.deleteMonitoring(monitoring_id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }
