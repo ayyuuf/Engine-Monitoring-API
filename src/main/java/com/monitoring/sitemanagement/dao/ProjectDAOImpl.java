@@ -60,4 +60,7 @@ public class ProjectDAOImpl implements ProjectDAO{
         String query = "SELECT COUNT(*) FROM project";
         return jdbcTemplate.queryForObject(query, Integer.class);
     }
+
+
+
 }

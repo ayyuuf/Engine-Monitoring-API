@@ -21,10 +21,6 @@ public class MonitoringDAOImpl implements MonitoringDAO{
     public List<Map<String, Object>> getAllMonitorings() {
         String query = "SELECT * from monitoring";
         return jdbcTemplate.queryForList(query);
-//        RowMapper<Monitoring> rowMapper = new MonitoringMapper();
-//        List<Monitoring> list = jdbcTemplate.query(query, rowMapper);
-//        System.out.println(list);
-//        return list;
     }
 
     @Override

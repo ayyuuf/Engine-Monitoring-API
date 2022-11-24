@@ -23,6 +23,6 @@ public class MonitoringMapper implements RowMapper<Monitoring> {
         monitoring.setRunning_on(rs.getInt("running_on"));
         monitoring.setRunning_command(rs.getString("running_command"));
         monitoring.setLast_update(rs.getInt("last_update"));
-        return null;
+        return monitoring;
     }
 }

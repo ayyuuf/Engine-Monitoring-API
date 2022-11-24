@@ -16,4 +16,5 @@ public interface ProjectDAO {
 
     List<Project> getAllProjects();
     public int count();
+
 }
