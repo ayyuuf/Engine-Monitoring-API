@@ -28,7 +28,7 @@ public class AccountController {
     @PostMapping("/save-account")
     public ResponseEntity<?> addAccount(@RequestBody Account account) {
 
-        accountService.addAccount(account);
+         accountService.addAccount(account);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 

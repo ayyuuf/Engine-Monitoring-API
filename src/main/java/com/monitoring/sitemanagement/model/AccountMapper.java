@@ -21,7 +21,6 @@ public class AccountMapper implements RowMapper<Account> {
         account.setAccess_token(rs.getString("access_token"));
         account.setAccess_token_secret(rs.getString("access_token_secret"));
         account.setUsername(rs.getString("username"));
-        account.setTime(rs.getTimestamp("time"));
         account.setDescription(rs.getString("description"));
         return account;
     }

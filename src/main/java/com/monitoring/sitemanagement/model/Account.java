@@ -17,16 +17,9 @@ public class Account {
     private String access_token;
     private String access_token_secret;
     private String username;
-    private Timestamp time;
     private String description;
 
-    public Timestamp getTime() {
-        return time;
-    }
 
-    public void setTime(Timestamp time) {
-        this.time = time;
-    }
 
     public String getDescription() {
         return description;

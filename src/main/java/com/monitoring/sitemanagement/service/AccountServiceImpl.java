@@ -21,6 +21,8 @@ public class AccountServiceImpl implements AccountService{
     @Override
     public void addAccount(Account account) {
         accountDAO.addAccount(account);
+
+
     }
 
     @Override

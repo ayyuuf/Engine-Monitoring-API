@@ -24,10 +24,13 @@ public class AccountDAOImpl implements AccountDAO{
         return list;
     }
 
+
     @Override
     public void addAccount(Account account) {
         String query = ("INSERT INTO account( screen_name, email, phone_no, password, status, type, app_name, consumer_key, consumer_secret, access_token, access_token_secret, username, description) VALUES('"+account.getScreen_name()+"','"+account.getEmail()+"','"+account.getPhone_no()+"','"+account.getPassword()+"','"+account.getStatus()+"','"+account.getType()+"','"+account.getApp_name()+"','"+account.getConsumer_key()+"','"+account.getConsumer_secret()+"','"+account.getAccess_token()+"', '"+account.getAccess_token_secret()+"', '"+account.getUsername()+"', '"+account.getDescription()+"')");
+        System.out.println(query);
         jdbcTemplate.update(query);
+
     }
 
     @Override
@@ -52,6 +55,8 @@ public class AccountDAOImpl implements AccountDAO{
         Account account= jdbcTemplate.queryForObject(query, rowMapper, email);
         return account;
     }
+
+
 
 
 }
