@@ -18,6 +18,8 @@ public class Monitoring {
     private int running_on;
     private String running_command;
     private int last_update;
+    private String project_name;
+
 
     public Monitoring() {
     }
@@ -132,5 +134,13 @@ public class Monitoring {
 
     public void setLast_update(int last_update) {
         this.last_update = last_update;
+    }
+
+    public String getProject_name() {
+        return project_name;
+    }
+
+    public void setProject_name(String project_name) {
+        this.project_name = project_name;
     }
 }
