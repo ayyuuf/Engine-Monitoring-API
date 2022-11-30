@@ -1,8 +1,5 @@
 package com.monitoring.sitemanagement.model;
 
-import java.sql.Timestamp;
-import java.util.Date;
-
 public class Account {
 
     private String screen_name;
@@ -20,6 +17,24 @@ public class Account {
     private String description;
 
 
+    public Account(String screen_name, String email, Long phone_no, String password, String status, String type, String app_name, String consumer_key, String consumer_secret, String access_token, String access_token_secret, String username, String description) {
+        this.screen_name = screen_name;
+        this.email = email;
+        this.phone_no = phone_no;
+        this.password = password;
+        this.status = status;
+        this.type = type;
+        this.app_name = app_name;
+        this.consumer_key = consumer_key;
+        this.consumer_secret = consumer_secret;
+        this.access_token = access_token;
+        this.access_token_secret = access_token_secret;
+        this.username = username;
+        this.description = description;
+    }
+
+    public Account(String screen_name, String email, String phone_no, String password, String status, String type, String app_name, String consumer_key, String consumer_secret, String access_token, String access_token_secret, String username, String description){
+    }
 
     public String getDescription() {
         return description;
@@ -27,9 +42,6 @@ public class Account {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Account(){
     }
 
     public String getScreen_name() {

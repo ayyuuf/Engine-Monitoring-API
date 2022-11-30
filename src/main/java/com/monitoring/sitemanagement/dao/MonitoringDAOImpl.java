@@ -46,7 +46,7 @@ public class MonitoringDAOImpl implements MonitoringDAO{
 
     @Override
     public void addMonitoring(Monitoring monitoring) {
-        String query = ("INSERT INTO monitoring (username, project_id, server_id, name, type, port, haproxy, haproxy_port, path, git_url, running_on, running_command, last_update) VALUES ('"+monitoring.getUsername()+"','"+monitoring.getProject_id()+"', '"+monitoring.getServer_id()+"','"+monitoring.getName()+"','"+monitoring.getType()+"', '"+monitoring.getPort()+"', '"+monitoring.getHaproxy()+"', '"+monitoring.getHaproxy_port()+"','"+monitoring.getPath()+"', '"+monitoring.getGit_url()+"', '"+monitoring.getRunning_on()+"', '"+monitoring.getRunning_command()+"', '"+monitoring.getLast_update()+"')");
+        String query = ("INSERT INTO monitoring (username, project_id, server_id, name, type, port, haproxy, haproxy_port, path, git_url, running_on, running_command, project_name) VALUES ('"+monitoring.getUsername()+"','"+monitoring.getProject_id()+"', '"+monitoring.getServer_id()+"','"+monitoring.getName()+"','"+monitoring.getType()+"', '"+monitoring.getPort()+"', '"+monitoring.getHaproxy()+"', '"+monitoring.getHaproxy_port()+"','"+monitoring.getPath()+"', '"+monitoring.getGit_url()+"', '"+monitoring.getRunning_on()+"', '"+monitoring.getRunning_command()+"', '"+monitoring.getProject_name()+"')");
         System.out.println(query);
         jdbcTemplate.update(query);
 
@@ -54,8 +54,8 @@ public class MonitoringDAOImpl implements MonitoringDAO{
 
     @Override
     public void updateMonitoring(Monitoring monitoring) {
-        String query =("UPDATE monitoring SET username=?, project_id=?, server_id=?, name=?, type=?, port=?,haproxy=?, haproxy_port=?, path=?, git_url=?, running_on=?, running_command=?, last_update=? WHERE monitoring_id=?");
-        jdbcTemplate.update(query, monitoring.getUsername(),monitoring.getProject_id(), monitoring.getServer_id(), monitoring.getName(), monitoring.getType(),monitoring.getPort(), monitoring.getHaproxy(), monitoring.getHaproxy_port(),monitoring.getPath(),monitoring.getGit_url(), monitoring.getRunning_on(), monitoring.getRunning_command(), monitoring.getLast_update(),monitoring.getMonitoring_id());
+        String query =("UPDATE monitoring SET username=?, project_id=?, server_id=?, name=?, type=?, port=?,haproxy=?, haproxy_port=?, path=?, git_url=?, running_on=?, running_command=?WHERE monitoring_id=?");
+        jdbcTemplate.update(query, monitoring.getUsername(),monitoring.getProject_id(), monitoring.getServer_id(), monitoring.getName(), monitoring.getType(),monitoring.getPort(), monitoring.getHaproxy(), monitoring.getHaproxy_port(),monitoring.getPath(),monitoring.getGit_url(), monitoring.getRunning_on(), monitoring.getRunning_command(),monitoring.getMonitoring_id());
     }
 
     @Override

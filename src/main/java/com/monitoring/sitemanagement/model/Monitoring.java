@@ -17,9 +17,24 @@ public class Monitoring {
     private String git_url;
     private int running_on;
     private String running_command;
-    private int last_update;
     private String project_name;
 
+    public Monitoring(int monitoring_id, String username, int project_id, int server_id, String name, int type, int port, int haproxy, int haproxy_port, String path, String git_url, int running_on, String running_command, String project_name) {
+        this.monitoring_id = monitoring_id;
+        this.username = username;
+        this.project_id = project_id;
+        this.server_id = server_id;
+        this.name = name;
+        this.type = type;
+        this.port = port;
+        this.haproxy = haproxy;
+        this.haproxy_port = haproxy_port;
+        this.path = path;
+        this.git_url = git_url;
+        this.running_on = running_on;
+        this.running_command = running_command;
+        this.project_name = project_name;
+    }
 
     public Monitoring() {
     }
@@ -126,14 +141,6 @@ public class Monitoring {
 
     public void setRunning_command(String running_command) {
         this.running_command = running_command;
-    }
-
-    public int getLast_update() {
-        return last_update;
-    }
-
-    public void setLast_update(int last_update) {
-        this.last_update = last_update;
     }
 
     public String getProject_name() {

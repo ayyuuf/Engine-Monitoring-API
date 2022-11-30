@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -35,8 +36,8 @@ public class AccountDAOImpl implements AccountDAO{
 
     @Override
     public void updateAccount(Account account) {
-        String query = "UPDATE account SET screen_name= ?, email= ?, phone_no=? , password =?, status =?, type=? ,app_name=? ,consumer_key=? ,consumer_secret=? ,access_token=?, access_token_secret=? , username=?, description=?";
-        jdbcTemplate.update(query, account.getScreen_name(), account.getEmail(), account.getPhone_no(), account.getPassword(), account.getStatus(), account.getType(),account.getApp_name(), account.getConsumer_key(), account.getConsumer_secret(), account.getAccess_token(),account.getAccess_token_secret(), account.getUsername(), account.getDescription());
+        String query = "UPDATE account SET  email= ?, phone_no=? , password =?, status =?, type=? ,app_name=? ,consumer_key=? ,consumer_secret=? ,access_token=?, access_token_secret=? , username=?, description=?";
+        jdbcTemplate.update(query, account.getEmail(), account.getPhone_no(), account.getPassword(), account.getStatus(), account.getType(),account.getApp_name(), account.getConsumer_key(), account.getConsumer_secret(), account.getAccess_token(),account.getAccess_token_secret(), account.getUsername(), account.getDescription());
 
 
     }
@@ -56,7 +57,12 @@ public class AccountDAOImpl implements AccountDAO{
         return account;
     }
 
-
+    @Override
+    public void uploadFile(MultipartFile file) {
+    String query = "INSERT INTO account (screen_name, email, phone_no, password, status, type, app_name, consumer_key, consumer_secret, access_token, access_token_secret, username, description)VALUES(:screen_name, :email, :phone_no, :password, :status, :type, :app_name, :consumer_key, :consumer_secret, :access_token, :access_token_secret, :username, :description)";
+    System.out.println(query);
+    jdbcTemplate.update(query);
+    }
 
 
 }

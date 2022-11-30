@@ -23,7 +23,6 @@ public class MonitoringMapper implements RowMapper<Monitoring> {
         monitoring.setGit_url(rs.getString("git_url"));
         monitoring.setRunning_on(rs.getInt("running_on"));
         monitoring.setRunning_command(rs.getString("running_command"));
-        monitoring.setLast_update(rs.getInt("last_update"));
         monitoring.setProject_name(rs.getString("project_name"));
         return monitoring;
     }

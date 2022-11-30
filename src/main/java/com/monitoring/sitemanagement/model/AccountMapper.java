@@ -1,5 +1,6 @@
 package com.monitoring.sitemanagement.model;
 
+import ch.qos.logback.classic.util.LogbackMDCAdapter;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
@@ -8,7 +9,8 @@ import java.sql.SQLException;
 public class AccountMapper implements RowMapper<Account> {
     @Override
     public Account mapRow(ResultSet rs, int rowNum) throws SQLException {
-        Account account = new Account();
+        LogbackMDCAdapter csvRecord = null;
+        Account account = new Account(csvRecord.get("screen_name"), csvRecord.get("email"), csvRecord.get("phone_no"), csvRecord.get("password"), csvRecord.get("status"), csvRecord.get("type"), csvRecord.get("app_name"), csvRecord.get("consumer_key"), csvRecord.get("consumer_secret"), csvRecord.get("access_token"), csvRecord.get("access_token_secret"), csvRecord.get("username"), csvRecord.get("description"));
         account.setScreen_name(rs.getString("screen_name"));
         account.setEmail(rs.getString("email"));
         account.setPhone_no(rs.getLong("phone_no"));
