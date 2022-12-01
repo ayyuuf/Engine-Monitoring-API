@@ -63,14 +63,15 @@ public class AccountController {
 
 
     @PostMapping("/upload")
-    public ResponseEntity<?> uploadFile(
+    public ResponseEntity<?> readFile(
             @RequestParam("file")MultipartFile file) {
 
         if (isCSVFile(file)) {
             try {
-                accountService.uploadFile(file);
-                return ResponseEntity.ok(csvToListModelMap(file));
-            } catch (Exception e) {
+
+                accountService.readFile(file);
+                return ResponseEntity.ok((file));
+            } catch (Exception e)  {
                 return new ResponseEntity(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
             }
         } else {
@@ -85,34 +86,5 @@ public class AccountController {
         return true;
     }
 
-    private List<ModelMap> csvToListModelMap(MultipartFile file) throws Exception {
-        BufferedReader fileReader = new BufferedReader(
-                new InputStreamReader(file.getInputStream(), "UTF-8"));
-        CSVParser csvParser = CSVFormat.EXCEL.withFirstRecordAsHeader().withDelimiter(';').parse(fileReader);
-        List<ModelMap> list = new ArrayList<>();
-
-        Iterable<CSVRecord> csvRecords = csvParser.getRecords();
-
-        for (CSVRecord csvRecord : csvRecords) {
-            ModelMap m = new ModelMap();
-
-            m.put("screen_name", csvRecord.get("screen_name"));
-            m.put("email", csvRecord.get("email"));
-            m.put("phone_no", csvRecord.get("phone_no"));
-            m.put("password", csvRecord.get("password"));
-            m.put("status", csvRecord.get("status"));
-            m.put("type", csvRecord.get("type"));
-            m.put("app_name", csvRecord.get("app_name"));
-            m.put("consumer_key", csvRecord.get("consumer_key"));
-            m.put("consumer_secret", csvRecord.get("consumer_secret"));
-            m.put("access_token", csvRecord.get("access_token"));
-            m.put("access_token_secret", csvRecord.get("access_token_secret"));
-            m.put("username", csvRecord.get("username"));
-            m.put("description", csvRecord.get("description"));
-
-            list.add(m);}
-
-        return list;
-    }
 
 }
