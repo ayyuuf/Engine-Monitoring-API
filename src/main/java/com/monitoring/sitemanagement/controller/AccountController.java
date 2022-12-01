@@ -2,20 +2,11 @@ package com.monitoring.sitemanagement.controller;
 
 import com.monitoring.sitemanagement.model.Account;
 import com.monitoring.sitemanagement.service.AccountService;
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVParser;
-import org.apache.commons.csv.CSVRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -70,7 +61,7 @@ public class AccountController {
             try {
 
                 accountService.readFile(file);
-                return ResponseEntity.ok((file));
+                return ResponseEntity.ok("Succes");
             } catch (Exception e)  {
                 return new ResponseEntity(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
             }

@@ -38,10 +38,30 @@ public class AccountDAOImpl implements AccountDAO{
 
     @Override
     public void addAccount(Account account) {
-        String query = ("INSERT INTO account( screen_name, email, phone_no, password, status, type, app_name, consumer_key, consumer_secret, access_token, access_token_secret, username, description) VALUES('"+account.getScreen_name()+"','"+account.getEmail()+"','"+account.getPhone_no()+"','"+account.getPassword()+"','"+account.getStatus()+"','"+account.getType()+"','"+account.getApp_name()+"','"+account.getConsumer_key()+"','"+account.getConsumer_secret()+"','"+account.getAccess_token()+"', '"+account.getAccess_token_secret()+"', '"+account.getUsername()+"', '"+account.getDescription()+"')");
-        jdbcTemplate.update(query);
+        // Check screen name
+        String query = "SELECT * from account where email='" + account.getEmail() + "' and  type='" + account.getType() + "'";
+        System.out.println(query);
+        List<Map<String, Object>> email = jdbcTemplate.queryForList(query);
+        System.out.println(email);
+        if (email.size() == 0) {
+            // Insert account
+            query ="INSERT INTO account( screen_name, email, phone_no, password, status, type, app_name, consumer_key, consumer_secret, access_token, access_token_secret, username, description) VALUES('"+account.getScreen_name()+"','"+account.getEmail()+"','"+account.getPhone_no()+"','"+account.getPassword()+"','"+account.getStatus()+"','"+account.getType()+"','"+account.getApp_name()+"','"+account.getConsumer_key()+"','"+account.getConsumer_secret()+"','"+account.getAccess_token()+"', '"+account.getAccess_token_secret()+"', '"+account.getUsername()+"', '"+account.getDescription()+"')";
+            System.out.println(query);
+            jdbcTemplate.update(query);
+        } else {
+            // Condition data already exist
+            String massage = "Please Use another email";
 
+
+        }
     }
+
+//    @Override
+//    public void addAccount(Account account) {
+//        String query = ("INSERT INTO account( screen_name, email, phone_no, password, status, type, app_name, consumer_key, consumer_secret, access_token, access_token_secret, username, description) VALUES('"+account.getScreen_name()+"','"+account.getEmail()+"','"+account.getPhone_no()+"','"+account.getPassword()+"','"+account.getStatus()+"','"+account.getType()+"','"+account.getApp_name()+"','"+account.getConsumer_key()+"','"+account.getConsumer_secret()+"','"+account.getAccess_token()+"', '"+account.getAccess_token_secret()+"', '"+account.getUsername()+"', '"+account.getDescription()+"')");
+//        jdbcTemplate.update(query);
+//
+//    }
 
     @Override
     public void updateAccount(Account account) {
@@ -77,7 +97,7 @@ public class AccountDAOImpl implements AccountDAO{
 
             for (CSVRecord csvRecord : csvRecords) {
                 Map<String, Object> m = new HashMap<>();
-
+                if (!csvRecord.get(0).isEmpty()){
                 m.put("screen_name", csvRecord.get(0));
                 m.put("email", csvRecord.get(1));
                 m.put("phone_no", csvRecord.get(2));
@@ -92,11 +112,13 @@ public class AccountDAOImpl implements AccountDAO{
                 m.put("username", csvRecord.get(11));
                 m.put("description", csvRecord.get(12));
 
-                list.add(m);}
+                list.add(m);
+                }
+            }
         for (Map<String,Object> data:
              list)
         {
-            String query = "INSERT INTO account( screen_name, email, phone_no, password, status, type, app_name, consumer_key, consumer_secret, access_token, access_token_secret, username, description) VALUES('"+data.get("screen_name").toString()+"','"+data.get("email").toString()+"','"+Integer.parseInt(data.get("phone_no").toString())+"','"+data.get("password").toString()+"','"+data.get("status").toString()+"','"+data.get("type").toString()+"','"+data.get("app_name").toString()+"','"+data.get("consumer_key").toString()+"','"+data.get("consumer_secret").toString()+"','"+data.get("access_token").toString()+"', '"+data.get("access_token_secret").toString()+"', '"+data.get("username").toString()+"', '"+data.get("description").toString()+"')";
+            String query = "INSERT INTO account( screen_name, email, phone_no, password, status, type, app_name, consumer_key, consumer_secret, access_token, access_token_secret, username, description) VALUES('"+data.get("screen_name").toString()+"','"+data.get("email").toString()+"','"+data.get("phone_no").toString()+"','"+data.get("password").toString()+"','"+data.get("status").toString()+"','"+data.get("type").toString()+"','"+data.get("app_name").toString()+"','"+data.get("consumer_key").toString()+"','"+data.get("consumer_secret").toString()+"','"+data.get("access_token").toString()+"', '"+data.get("access_token_secret").toString()+"', '"+data.get("username").toString()+"', '"+data.get("description").toString()+"')";
             System.out.println(query);
             jdbcTemplate.update(query);
         }
