@@ -10,7 +10,6 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.BufferedReader;
@@ -45,7 +44,7 @@ public class AccountDAOImpl implements AccountDAO{
         System.out.println(email);
         if (email.size() == 0) {
             // Insert account
-            query ="INSERT INTO account( screen_name, email, phone_no, password, status, type, app_name, consumer_key, consumer_secret, access_token, access_token_secret, username, description) VALUES('"+account.getScreen_name()+"','"+account.getEmail()+"','"+account.getPhone_no()+"','"+account.getPassword()+"','"+account.getStatus()+"','"+account.getType()+"','"+account.getApp_name()+"','"+account.getConsumer_key()+"','"+account.getConsumer_secret()+"','"+account.getAccess_token()+"', '"+account.getAccess_token_secret()+"', '"+account.getUsername()+"', '"+account.getDescription()+"')";
+            query ="INSERT INTO account( screen_name, email, phone_no, password, status, type, app_name, consumer_key, consumer_secret, access_token, access_token_secret, username, description, id) VALUES('"+account.getScreen_name()+"','"+account.getEmail()+"','"+account.getPhone_no()+"','"+account.getPassword()+"','"+account.getStatus()+"','"+account.getType()+"','"+account.getApp_name()+"','"+account.getConsumer_key()+"','"+account.getConsumer_secret()+"','"+account.getAccess_token()+"', '"+account.getAccess_token_secret()+"', '"+account.getUsername()+"', '"+account.getDescription()+"','"+account.getId()+"')";
             System.out.println(query);
             jdbcTemplate.update(query);
         } else {
@@ -56,17 +55,12 @@ public class AccountDAOImpl implements AccountDAO{
         }
     }
 
-//    @Override
-//    public void addAccount(Account account) {
-//        String query = ("INSERT INTO account( screen_name, email, phone_no, password, status, type, app_name, consumer_key, consumer_secret, access_token, access_token_secret, username, description) VALUES('"+account.getScreen_name()+"','"+account.getEmail()+"','"+account.getPhone_no()+"','"+account.getPassword()+"','"+account.getStatus()+"','"+account.getType()+"','"+account.getApp_name()+"','"+account.getConsumer_key()+"','"+account.getConsumer_secret()+"','"+account.getAccess_token()+"', '"+account.getAccess_token_secret()+"', '"+account.getUsername()+"', '"+account.getDescription()+"')");
-//        jdbcTemplate.update(query);
-//
-//    }
 
     @Override
     public void updateAccount(Account account) {
-        String query = "UPDATE account SET  email= ?, phone_no=? , password =?, status =?, type=? ,app_name=? ,consumer_key=? ,consumer_secret=? ,access_token=?, access_token_secret=? , username=?, description=?";
-        jdbcTemplate.update(query, account.getEmail(), account.getPhone_no(), account.getPassword(), account.getStatus(), account.getType(),account.getApp_name(), account.getConsumer_key(), account.getConsumer_secret(), account.getAccess_token(),account.getAccess_token_secret(), account.getUsername(), account.getDescription());
+        String query = "UPDATE account SET screen_name=?, email= ?, phone_no=? , password =?, status =?, type=? ,app_name=? ,consumer_key=? ,consumer_secret=? ,access_token=?, access_token_secret=? , username=?, description=? WHERE id=?";
+        System.out.println(query);
+        jdbcTemplate.update(query, account.getApp_name(), account.getEmail(), account.getPhone_no(), account.getPassword(), account.getStatus(), account.getType(),account.getApp_name(), account.getConsumer_key(), account.getConsumer_secret(), account.getAccess_token(),account.getAccess_token_secret(), account.getUsername(), account.getDescription(), account.getId());
 
 
     }

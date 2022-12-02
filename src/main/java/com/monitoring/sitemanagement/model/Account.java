@@ -6,6 +6,7 @@ import lombok.Getter;
 @Data
 public class Account {
 
+    private int id;
     private String screen_name;
     private String email;
     private String phone_no;

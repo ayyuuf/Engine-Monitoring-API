@@ -11,6 +11,7 @@ public class AccountMapper implements RowMapper<Account> {
     public Account mapRow(ResultSet rs, int rowNum) throws SQLException {
         LogbackMDCAdapter csvRecord = new LogbackMDCAdapter();
         Account account = new Account();
+        account.setId(rs.getInt("id"));
         account.setScreen_name(rs.getString("screen_name"));
         account.setEmail(rs.getString("email"));
         account.setPhone_no(rs.getString("phone_no"));

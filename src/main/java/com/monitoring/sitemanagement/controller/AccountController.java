@@ -61,7 +61,7 @@ public class AccountController {
             try {
 
                 accountService.readFile(file);
-                return ResponseEntity.ok("Succes");
+                return ResponseEntity.ok("Success");
             } catch (Exception e)  {
                 return new ResponseEntity(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
             }
